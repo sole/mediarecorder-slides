@@ -144,3 +144,8 @@ ins {
 	color: green;
 	text-decoration: none;
 }
+
+img {
+	max-width: 80%;
+	height: auto;
+}

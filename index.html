@@ -241,60 +241,138 @@
 				<div><iframe data-src="examples/filter-and-record-live-audio.html"></iframe></div>
 			</section>
 
+			<section>
+				<h1>we know how to manipulate and<br />record video, and audio</h1>
+				<h2>but how to do it all together?</h2>
+			</section>
+			<section>
+				<h1>When we process audio and video in parallel, we end up with <em>two</em> streams, but <tt>MediaRecorder</tt> only takes <em>one</em>...</h1>
+			</section>
+
+			<section>
+				<h1>What is  ✨the ultimate secret✨<br />to real time front-end alchemy?</h1>
+			</section>
 			
 			<section>
-				how to do it all together?
-				we know how to manipulate and record video, and audio
-				if we do this thing in parallel we end up with two streams but media recorder only takes one... howwww?
+				<h1><tt>MediaStream</tt></h1>
 			</section>
 
 			<section>
-				turns out we can create instances of <tt>MediaStream</tt> as we have access to the constructor
+				<h2><tt>MediaStream</tt></h2>
+				<ul>
+					<li>we can create instances, as we have access to the constructor</li>
+					<li>each instance has <em>very</em> useful methods
+						<ul>
+							<li><tt>getAudioTracks()</tt></li>
+							<li><tt>getVideoTracks()</tt></li>
+							<li><tt>addTrack()</tt></li>
+							<li>etc...</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			
+			<section>
+				<h1>With this, we can recombine any number of streams into just one and keep on recording!</h1>
+				<h2>(as <tt>MediaRecorder</tt> doesn't care where did the stream come from)</h2>
 			</section>
 
 			<section>
-				each instance has 
-				getAudioTracks
-				getVideoTracks
-				addTrack...
-
-				with this we can recombine any number of streams into just one and keep recording!
+				<pre>
+					<code class="language-js">
+					// Video =========================
+					var videoStream = new MediaStream();
+					var videoTracks = inputStream.getVideoTracks();
+					videoTracks.forEach(function(track) {
+						videoStream.addTrack(track);
+					});
+					// [...] manipulate videoStream into a canvas
+					// then get result from canvas stream into videoOutputStream
+					var videoOutputStream = videoCanvas.captureStream();
+					</code>
+				</pre>
+			</section>
+			<section>
+				<pre>
+					<code class="language-js">
+					// Audio =========================
+					var audioStream = new MediaStream();
+					var audioTracks = inputStream.getAudioTracks();
+					audioTracks.forEach(function(track) {
+						audioStream.addTrack(track);
+					});
+					// [...] manipulate audio with an audio context
+					// then get result from audio destination node into audioOutputStream
+					var audioOutputStream = streamDestination.stream;
+					</code>
+				</pre>
 			</section>
 
 			<section>
-				pseudocode for splitting and recombining
+				<pre>
+					<code class="language-js">
+					// Merging into one stream only ==
+					var outputStream = new MediaStream();
+					[audioOutputStream, videoOutputStream].forEach(function(s) {
+						s.getTracks().forEach(function(t) {
+							outputStream.addTrack(t);
+						});
+					});
+					</code>
+				</pre>
 			</section>
 
 			<section>
-				full example: boo, uses web gl  web audio and can download files
+				<pre>
+					<code class="language-js">
+					// And recording! ================
+					var finalRecorder = new MediaRecorder(outputStream);
+					</code>
+				</pre>
 			</section>
 
 			<section>
-				Wrap up:
-				
-				The MediaCapture API is very cool!
-				support is so so:
-				Firefox supports everything I showed you (obvs)
-				Chrome can record audio and video streams (but not coming from WebAudio or canvas)
-				Safari hahahaha
-				Internet Explorer not in your dreams but MS Edge seems open to develop this
-				Support on mobile (Fx/Chrome) can be a bit hit and miss but things are getting better
+				<h1><tt>MediaRecorder</tt> + <tt>Web Audio</tt> + <tt>WebGL</tt> enable you to build really sophisticated apps without plugins or server side support<br />so it's faster and respectful of your users' privacy</h1>
+			</section>
+			<section>
+				<h1>Example: Boo</h1>
+				<h2>A videobooth built with WebGL and Web Audio</h2>
+				<a href="https://mozdevs.github.io/boo/"><img src="imgs/boo.png" alt="Boo videobooth" /></a>
 			</section>
 
 			<section>
-				More resources
-				* Hacks post
-				* Media recorder examples
-				* MDN media recorder etc
+				<h1>Wrap up</h1>
+				<h2>The MediaCapture API is very cool!</h2>
+			</section>
+		
+			<section>
+				<h1>Wrap up</h1>
+				<h2>Support is so so:</h2>
+				<ul>
+					<li>Firefox supports everything I showed you (obviously)</li>
+					<li>Chrome can record audio and video streams (but not coming from WebAudio or canvas)</li>
+					<li>Safari lolsob 😂😥</li>
+					<li>Internet Explorer: not in your dreams, but MS Edge seems open to develop this</li>
+					<li>Support on mobile (Firefox/Chrome on Android) can be a bit hit and miss, and there's no hardware acceleration yet for the encoding, but things are getting better</li>
+					<li>I've no idea about Windows Phone or Blackberry</li>
+					<li>I don't think Opera Mini will support this</li>
+					<li>Definitely not in Lynx</li>
+				</ul>
 			</section>
 
 			<section>
-				Don't be afraid to play with new things. The best results often originate in accidents! Be creative and build cool stuff, and make yourself and other people happy :-)
+				<h1>More resources</h1>
+				<ul>
+					<li><a href="https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/">Record almost everything in the browser with MediaRecorder</a></li>
+					<li><a href="https://mozdevs.github.io/MediaRecorder-examples/">Media recorder examples</a> collection</li>
+					<li><a href="https://mozdevs.github.io/boo/">Boo!</a></li>
+					<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API">MDN MediaRecorder API documentation</a></li>
+				</ul>
 			</section>
 
 			<section>
-				Thanks!
-				soledadpenades.com / @supersole
+				<h1>Thanks!</h1>
+				<h2><a href="https://soledadpenades.com">soledadpenades.com</a> / @supersole</h2>
 			</section>
 			
 		</main>
