@@ -113,6 +113,23 @@ section.two-rows > div > * {
 	height: 100%;
 }
 
+section.fullscreen-demo {
+	display: flex;
+	background: #000;
+}
+
+section.fullscreen-demo > div {
+	width: 100%;
+	height: 100%;
+	flex: auto;
+	padding: 1rem;
+}
+
+section.fullscreen-demo > div iframe {
+	width: 100%;
+	height: 100%;
+}
+
 /* Not interested in Prism's stylistic choices with regards to code blocks */
 pre[class*="language-"] {
 	margin: 0;

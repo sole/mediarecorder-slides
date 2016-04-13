@@ -11,7 +11,6 @@ window.onload = function() {
 		// enable iframes for currently visible
 		var isVisible = s.classList.contains('active');
 		var id = s.id;
-		console.log(isVisible, id);
 		if(isVisible) {
 			enableIframesAtSection(id - 1);
 		}
@@ -34,7 +33,6 @@ window.onload = function() {
 
 	function enableIframesAtSection(sectionIndex) {
 		var section = sections[sectionIndex];
-		console.log(section, sectionIndex);
 		var iframes = Array.from(section.querySelectorAll('iframe'));
 		iframes.forEach(iframe => {
 			var dataSrc = iframe.dataset.src;
