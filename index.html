@@ -221,9 +221,24 @@
 				<div><iframe data-src="examples/filter-live-audio.html"></iframe></div>
 			</section>
 
+
 			<section>
-				// To record the filtered version, we need a stream node
-				// code example
+				<h1>Let's add a <tt>stream</tt> to record this:</h1>
+				<h2><tt>stream -&gt; audio context <ins>-&gt; stream</ins></tt></h2>
+			</section>
+
+			<section>
+				<pre>
+					<code class="language-js">
+						var outputNode = audioContext.createMediaStreamDestination();
+						filter.output.connect(outputNode);
+
+						var recorder = new MediaRecorder(outputNode.stream);
+						// and record as usual...
+						recorder.start();
+					</code>
+				</pre>
+				<div><iframe data-src="examples/filter-and-record-live-audio.html"></iframe></div>
 			</section>
 
 			
