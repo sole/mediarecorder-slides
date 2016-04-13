@@ -1,0 +1,124 @@
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body, html {
+	width: 100%;
+	height 100%;
+	overflow: hidden;
+}
+
+body {
+	font-size: 3vh;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+h2 { font-size: 1.75em; }
+h3 { font-size: 1.5em; }
+
+p, ul {
+	font-size: 2em;
+}
+
+ul {
+	list-style-position: inside;
+}
+
+section {
+	visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+section.active {
+	visibility: visible;
+}
+
+section.intro {
+	background: #efefef;
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+}
+
+section.splash {
+	font-size: 2rem;
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+}
+
+section.background-image {
+	border: 3px solid red;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+section.background-image > * {
+	background: rgba(255, 255, 255, 0.7);
+	color: #fff;
+	padding: 0.1rem;
+}
+
+section.two-columns {
+	display: flex;
+	flex-flow: row;
+}
+
+section.two-columns > * {
+	flex-grow: 1;
+	width: 50%;
+}
+
+section.two-columns > div {
+	display: flex;
+}
+
+section.two-columns > div > * {
+	width: 100%;
+	height: 100%;
+}
+
+section.two-rows {
+	display: flex;
+	flex-flow: column;
+}
+
+section.two-rows > * {
+	flex-grow: 1;
+	height: 50%;
+}
+
+section.two-rows > div {
+	display: flex;
+}
+
+section.two-rows > div > * {
+	width: 100%;
+	height: 100%;
+}
+
+/* Not interested in Prism's stylistic choices with regards to code blocks */
+pre[class*="language-"] {
+	margin: 0;
+	border-radius: 0;
+}
+
+iframe {
+	border: none;
+}

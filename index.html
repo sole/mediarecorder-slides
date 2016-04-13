@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Real time front-end alchemy - Soledad Penadés</title>
+		<link rel="stylesheet" href="vendor/prism/prism.css">
+		<script src="vendor/prism/prism.js"></script>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<main>
+			<section class="intro">
+				<h1>Real time front-end alchemy</h1>
+				<h2>Soledad Penadés</h2>
+				<h3><a href="https://soledadpenades.com">soledadpenades.com</a> / @supersole</h3>
+			</section>
+
+			<section>
+				<h1>Real time front-end alchemy</h1>
+				<h2><em>or:</em> creating and manipulating streams</h2>
+			</section>
+			
+			<section class="splash background-image" data-background="imgs/streams.png">
+				<h1>Streams!?!</h1>
+			</section>
+
+			<section>
+				<div>
+					<h2>Not:</h2>
+					<ul>
+						<li>Node.js streams</li>
+						<li>Future JavaScript streams</li>
+					</ul>
+				</div>
+				<div>
+					<h2>Yes:</h2>
+					<ul>
+						<li><tt>MediaStream</tt>s</li>
+					</ul>
+				</div>
+			</section>
+			
+			<!-- getUserMedia -->
+			<section class="splash">
+				<h1><tt>getUserMedia</tt></h1>
+			</section>
+
+			<section>
+				<h2><tt>getUserMedia</tt></h2>
+				<pre>
+					<code class="language-js">
+						navigator.mediaDevices.getUserMedia({
+							 audio: true,
+							 video: true
+						}).then(function (stream) {
+							// do something with the stream
+						}
+					</code>
+				</pre>
+			</section>
+
+			<section class="two-rows">
+				<pre>
+					<code class="language-js">
+						navigator.mediaDevices.getUserMedia({
+							audio: true,
+							video: true
+						}).then(function (stream) {
+							var video = document.createElement('video');
+							document.body.appendChild(video);
+							video.src = URL.createObjectURL(stream);
+							video.play();
+						}
+					</code>
+				</pre>
+				<div><iframe data-src="examples/display-webcam.html"></iframe></div>
+			</section>
+
+			<section>
+				<h2>... this is old news 😴</h2>
+			</section>
+
+			<section>
+				<h1>🆕 and 🆒: <tt>MediaRecorder</tt></h1>
+			</section>
+
+			<section class="two-rows">
+				<pre>
+					<code class="language-js">
+						var recorder = new MediaRecorder(stream);
+						recorder.addEventListener('dataavailable', e => {
+							video.src = URL.createObjectURL(e.data);
+							video.play();
+						});
+						recorder.start();
+						setTimeout(() => {
+							recorder.stop();
+						}, 1000);
+					</code>
+				</pre>
+				<div>
+					<iframe data-src="examples/record-av.html"></iframe>
+				</div>
+			</section>
+
+			<section class="splash">
+				<h1>I just encoded audio and video natively in the browser, without plug-ins.</h1>
+			</section>
+
+			<section>
+				you can get creative (looping video + audio)
+			</section>
+			
+			<section>
+				<h1><tt>MediaRecorder</tt> doesn't care about where the <tt>stream</tt> comes from</h1>
+			</section>
+
+			<section>
+				<h1>Let's use it to record streams from other sources: <tt>canvas.captureStream()</tt></h1>
+			</section>
+
+			<section class="two-rows">
+				<pre>
+					<code class="language-js">
+						var canvasStream = canvas.captureStream(30); // fps
+						var recorder = new MediaRecorder(canvasStream);
+					</code>
+				</pre>
+				<div>
+					<iframe data-src="examples/record-canvas.html"></iframe>
+				</div>
+			</section>
+
+			<section>
+				<h1>We can also transform webcam images with <tt>canvas</tt> pixel manipulation</h1>
+			</section>
+
+			<section class="two-rows">
+				<pre>
+					<code class="language-js">
+					context.drawImage(video, 0, 0, width, height); // draw video into canvas
+					
+					var imageData = context.getImageData(0, 0, width, height);
+					var data = imageData.data;
+					for (var i = 0; i < data.length; i+=4) {
+						data[i] = data[i] >= cutOff ? 255 : 0; // red
+						data[i + 1] = data[i + 1] >= cutOff ? 255 : 0; // green
+						data[i + 2] = data[i + 2] >= cutOff ? 255 : 0; // blue
+					}
+					</code>
+				</pre>
+				<div>
+					<iframe data-src="examples/canvas-pixel-manipulation.html"></iframe>
+				</div>
+			</section>
+
+			<section>
+				<h1>And we can record the output of this canvas, using <tt>captureStream</tt> on it</h1>
+			</section>
+
+			<section class="two-rows">
+				<pre>
+					<code class="language-js">
+					// some steps from before, combined
+					// 1. init webcam
+					// 2. make video stream
+					// 3. copy to canvas and alter pixels
+					// 4. get stream from canvas
+					// 5. record!
+					</code>
+				</pre>
+				<div>
+					<iframe data-src="examples/canvas-pixel-manipulation-and-record.html"></iframe>
+				</div>
+			</section>
+
+			<section>
+				<h1>You should not use <tt>canvas</tt> 2D pixel manipulation for this because it can be really slow. Use WebGL!</h1>
+				<h2>(but WebGL takes longer to setup and learn and explain, and won't fit on slides, so...)</h2>
+			</section>
+
+			<section>
+				<h1>Likewise we can modify audio in real time, using an <tt>AudioContext</tt></h1>
+			</section>
+
+			<section>
+				<h1><tt>AudioContext</tt> is the door to the power of web audio</h1>
+				<h2>It lets you create input and output nodes and connect them together to form an audio graph where sounds can be routed and manipulated in various ways.</h2>
+				<h3>I cannot explain Web Audio to you in two minutes so this will have to do!</h3>
+			</section>
+
+			<section>
+				this what we're going to do: stream -> audio context -> stream
+			</section>
+
+			<section>
+				AudioContext -> stream input node
+				-> filter -> output node
+			</section>
+
+			<section>
+				// To record the filtered version, we need a stream node
+				// code example
+			</section>
+
+			
+			<section>
+				how to do it all together?
+				we know how to manipulate and record video, and audio
+				if we do this thing in parallel we end up with two streams but media recorder only takes one... howwww?
+			</section>
+
+			<section>
+				turns out we can create instances of <tt>MediaStream</tt> as we have access to the constructor
+			</section>
+
+			<section>
+				each instance has 
+				getAudioTracks
+				getVideoTracks
+				addTrack...
+
+				with this we can recombine any number of streams into just one and keep recording!
+			</section>
+
+			<section>
+				pseudocode for splitting and recombining
+			</section>
+
+			<section>
+				full example: boo, uses web gl  web audio and can download files
+			</section>
+
+			<section>
+				Wrap up:
+				
+				The MediaCapture API is very cool!
+				support is so so:
+				Firefox supports everything I showed you (obvs)
+				Chrome can record audio and video streams (but not coming from WebAudio or canvas)
+				Safari hahahaha
+				Internet Explorer not in your dreams but MS Edge seems open to develop this
+				Support on mobile (Fx/Chrome) can be a bit hit and miss but things are getting better
+			</section>
+
+			<section>
+				More resources
+				* Hacks post
+				* Media recorder examples
+				* MDN media recorder etc
+			</section>
+
+			<section>
+				Don't be afraid to play with new things. The best results often originate in accidents! Be creative and build cool stuff, and make yourself and other people happy :-)
+			</section>
+
+			<section>
+				Thanks!
+				soledadpenades.com / @supersole
+			</section>
+			
+		</main>
+		<script src="vendor/decky.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>
