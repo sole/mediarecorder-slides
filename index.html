@@ -126,6 +126,8 @@
 			<section class="two-rows">
 				<pre>
 					<code class="language-js">
+						// Not shown: drawing white noise on the canvas
+						// [...]
 						var canvasStream = canvas.captureStream(30); // fps
 						var recorder = new MediaRecorder(canvasStream);
 					</code>
@@ -184,22 +186,39 @@
 			</section>
 
 			<section>
-				<h1>Likewise we can modify audio in real time, using an <tt>AudioContext</tt></h1>
+				<h1>Likewise, we can modify audio in real time, using an <tt>AudioContext</tt></h1>
 			</section>
 
 			<section>
-				<h1><tt>AudioContext</tt> is the door to the power of web audio</h1>
-				<h2>It lets you create input and output nodes and connect them together to form an audio graph where sounds can be routed and manipulated in various ways.</h2>
-				<h3>I cannot explain Web Audio to you in two minutes so this will have to do!</h3>
+				<h1><tt>AudioContext</tt> is your door<br />to the power of Web Audio</h1>
+				<h2>It lets you <strong>create</strong> input and output <strong>nodes</strong> and <strong>connect</strong> them together to form an <strong>audio graph</strong> to <strong>route</strong> and <strong>manipulate</strong> sounds in various ways.</h2>
+				<h3>I cannot explain Web Audio to you in two minutes, so this will have to do!</h3>
 			</section>
 
 			<section>
-				this what we're going to do: stream -> audio context -> stream
+				<h1>This is what we're going to do:</h1>
+				<h2><tt>stream -&gt; audio context -&gt; stream</tt></h2>
 			</section>
 
 			<section>
-				AudioContext -> stream input node
-				-> filter -> output node
+				<h1>But we'll start with:</h1>
+				<h2><tt>stream -&gt; audio context</tt></h2>
+			</section>
+
+			<section>
+				<pre>
+					<code class="language-js">
+					// assume we obtained a stream from the webcam
+					var ac = new AudioContext();
+					var inputNode = audioContext.createMediaStreamSource(stream);
+					var flanger = makeFlanger(audioContext);
+					// [...]
+					//  ^^^  not shown: ~40 lines to build the flanger
+					inputNode.connect(flanger.input);
+					flanger.output.connect(ac.destination);
+					</code>
+				</pre>
+				<div><iframe data-src="examples/filter-live-audio.html"></iframe></div>
 			</section>
 
 			<section>
