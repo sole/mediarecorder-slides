@@ -10,12 +10,12 @@
 	<body>
 		<main>
 			<section class="intro">
-				<h1>Real time front-end alchemy</h1>
+				<h1>Real time<br />front-end alchemy</h1>
 				<h2>Soledad Penadés</h2>
 				<h3><a href="https://soledadpenades.com">soledadpenades.com</a> / @supersole</h3>
 			</section>
 
-			<section>
+			<section class="splash">
 				<h1>Real time front-end alchemy</h1>
 				<h2><em>or:</em> creating and manipulating streams</h2>
 			</section>
@@ -40,7 +40,6 @@
 				</div>
 			</section>
 			
-			<!-- getUserMedia -->
 			<section class="splash">
 				<h1><tt>getUserMedia</tt></h1>
 			</section>
@@ -76,12 +75,12 @@
 				<div><iframe data-src="examples/display-webcam.html"></iframe></div>
 			</section>
 
-			<section>
+			<section class="splash">
 				<h2>... this is old news 😴</h2>
 			</section>
 
-			<section>
-				<h1>🆕 and 🆒: <tt>MediaRecorder</tt></h1>
+			<section class="splash">
+				<h1>What's 🆕 and 🆒?<br /><tt class="fragment">MediaRecorder</tt></h1>
 			</section>
 
 			<section class="two-rows">
@@ -115,12 +114,13 @@
 				<div><iframe data-src="examples/looping-mosaic.html"></iframe></div>
 			</section>
 			
-			<section>
-				<h1><tt>MediaRecorder</tt> doesn't care about where the <tt>stream</tt> comes from</h1>
+			<section class="splash">
+				<h1><tt>MediaRecorder</tt> doesn't care about where does the <tt>stream</tt> come from</h1>
 			</section>
 
-			<section>
-				<h1>Let's use it to record streams from other sources: <tt>canvas.captureStream()</tt></h1>
+			<section class="splash">
+				<h1>Alternative sources:</h1>
+				<h2><tt>canvas.captureStream()</tt></h2>
 			</section>
 
 			<section class="two-rows">
@@ -137,7 +137,7 @@
 				</div>
 			</section>
 
-			<section>
+			<section class="splash">
 				<h1>We can also transform webcam images with <tt>canvas</tt> pixel manipulation</h1>
 			</section>
 
@@ -160,8 +160,8 @@
 				</div>
 			</section>
 
-			<section>
-				<h1>And we can record the output of this canvas, using <tt>captureStream</tt> on it</h1>
+			<section class="splash">
+				<h1>And we can record the output of this canvas, using <tt>captureStream</tt></h1>
 			</section>
 
 			<section class="two-rows">
@@ -185,7 +185,7 @@
 				<h2 class="fragment">(but WebGL takes longer to setup and learn and explain, and won't fit on slides, so...)</h2>
 			</section>
 
-			<section>
+			<section class="splash">
 				<h1>Likewise, we can modify audio in real time, using an <tt>AudioContext</tt></h1>
 			</section>
 
@@ -241,19 +241,19 @@
 				<div><iframe data-src="examples/filter-and-record-live-audio.html"></iframe></div>
 			</section>
 
-			<section>
-				<h1>we know how to manipulate and<br />record video, and audio</h1>
+			<section class="splash">
+				<h1>We know how to manipulate and<br />record video, and audio</h1>
 				<h2 class="fragment">but how to do it all together?</h2>
 			</section>
-			<section>
-				<h1>When we process audio and video in parallel, we end up with <em>two</em> streams, but <tt>MediaRecorder</tt> only takes <em>one</em>...</h1>
+			<section class="splash">
+				<h1>When we process audio and video in parallel, we get <em>two</em> streams, but <tt>MediaRecorder</tt> only takes <em>one</em>...</h1>
 			</section>
 
-			<section>
+			<section class="splash">
 				<h1>What is  ✨the ultimate secret✨<br />to real time front-end alchemy?</h1>
 			</section>
 			
-			<section>
+			<section class="splash">
 				<h1><tt>MediaStream</tt></h1>
 			</section>
 
@@ -332,7 +332,7 @@
 			</section>
 
 			<section>
-				<h1><tt>MediaRecorder</tt> + <tt>Web Audio</tt> + <tt>WebGL</tt> enable you to build really sophisticated apps without plugins or server side support<br />so it's faster and respectful of your users' privacy</h1>
+				<h1><tt>MediaRecorder</tt> + <tt>Web Audio</tt> + <tt>WebGL</tt> enable you to build really sophisticated apps without plugins or server side support<br /><span class="fragment">so it's faster and respectful of your users' privacy</span></h1>
 			</section>
 			<section>
 				<h1>Example: Boo</h1>
@@ -353,11 +353,16 @@
 					<li class="fragment">Chrome can record audio and video streams (but not coming from WebAudio or canvas)</li>
 					<li class="fragment">Safari lolsob 😂😥</li>
 					<li class="fragment">Internet Explorer: not in your dreams, but MS Edge seems open to develop this</li>
-					<li class="fragment">Support on mobile (Firefox/Chrome on Android) can be a bit hit and miss, and there's no hardware acceleration yet for the encoding, but things are getting better</li>
+					<li class="fragment">Firefox/Chrome on Android: bit hit and miss, and no hardware accelerated encoding yet</li>
 					<li class="fragment">I've no idea about Windows Phone or Blackberry</li>
 					<li class="fragment">I don't think Opera Mini will support this</li>
 					<li class="fragment">Definitely not in Lynx</li>
 				</ul>
+			</section>
+
+			<section>
+				<h1>Wrap up</h1>
+				<h2>But it is getting good really quickly!</h2>
 			</section>
 
 			<section>
@@ -370,7 +375,7 @@
 				</ul>
 			</section>
 
-			<section>
+			<section class="splash">
 				<h1>Thanks!</h1>
 				<h2><a href="https://soledadpenades.com">soledadpenades.com</a> / @supersole</h2>
 			</section>
