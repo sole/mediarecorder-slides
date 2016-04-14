@@ -63,6 +63,15 @@ ul ul {
 	padding-left: 3vw;
 }
 
+nav {
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: 2vh;
+	height: 2vh;
+	background: #ddd;
+}
+
 section {
 	visibility: hidden;
 	position: absolute;
