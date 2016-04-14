@@ -17,11 +17,6 @@ body, html {
 	overflow: hidden;
 }
 
-/*video {
-	width: auto;
-	height: 100%;
-}*/
-
 video {
 	height: 240px;
 	width: 320px;

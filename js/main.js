@@ -23,6 +23,7 @@ window.onload = function() {
 		var bg = s.dataset['background'];
 		if(bg !== undefined) {
 			s.style.backgroundImage = `url(${bg})`;
+			preloadImage(bg);
 		}
 
 		// enable iframes for currently visible
@@ -115,5 +116,18 @@ window.onload = function() {
 		if(nextFragment) {
 			showFragment(nextFragment);
 		}
+	}
+
+	var preloadContainer;
+	function preloadImage(url) {
+		if(!preloadContainer) {
+			preloadContainer = document.createElement('div');
+			preloadContainer.style.visibility = 'hidden';
+			document.body.appendChild(preloadContainer);
+		}
+
+		var img = document.createElement('img');
+		img.src = url;
+		preloadContainer.appendChild(img);
 	}
 };

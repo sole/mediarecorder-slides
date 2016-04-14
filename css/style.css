@@ -55,7 +55,8 @@ p {
 
 ul {
 	list-style-position: inside;
-	font-size: 6vh;
+	font-size: 5vh;
+	margin: 2vh 0;
 }
 
 ul ul {
@@ -85,10 +86,14 @@ section.intro {
 }
 
 section.splash {
-	font-size: 2rem;
+	font-size: 1.25em;
 	display: flex;
 	flex-flow: column;
 	justify-content: center;
+}
+
+section.warning {
+	background: #ff0;
 }
 
 section.background-image {
@@ -178,10 +183,6 @@ img {
 	max-width: 80%;
 	height: auto;
 	max-height: 70%;
-}
-
-ul {
-	margin: 2vh 0;
 }
 
 tt {
