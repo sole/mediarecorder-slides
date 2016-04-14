@@ -19,25 +19,25 @@ var decky = (function () {
     slide.setAttribute('id', i + 1);
   });
 
-  body.addEventListener('click', function (e) {
+  /*body.addEventListener('click', function (e) {
     if (e.target.href) {
       return;
     } else {
       nextSlide();
     }
-  });
+  });*/
 
   document.addEventListener('keydown', function (e) {
     if (!(e.metaKey || e.shiftKey || e.ctrlKey || e.altKey)) {
       switch (e.which) {
         case 37:
-        case 38:
+        // case 38: // UP
           prevSlide();
           e.preventDefault();
           break;
         case 32:
         case 39:
-        case 40:
+        // case 40: // DOWN
           nextSlide();
           e.preventDefault();
           break;

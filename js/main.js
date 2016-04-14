@@ -1,5 +1,22 @@
 window.onload = function() {
 	var sections = Array.from(document.querySelectorAll('section'));
+	//var currentSectionFragments;
+	//var currentFragment;
+
+	document.addEventListener('keydown', function (e) {
+    if (!(e.metaKey || e.shiftKey || e.ctrlKey || e.altKey)) {
+      switch (e.which) {
+         case 38: // UP
+          hideOneFragment();
+          e.preventDefault();
+          break;
+         case 40: // DOWN
+          showOneFragment();
+          e.preventDefault();
+          break;
+      }
+    }
+  });
 	
 	sections.forEach(s => {
 		// data-background to section style background value
@@ -12,13 +29,19 @@ window.onload = function() {
 		var isVisible = s.classList.contains('active');
 		var id = s.id;
 		if(isVisible) {
-			enableIframesAtSection(id - 1);
+			var sectionIndex = id - 1;
+			enableIframesAtSection(sectionIndex);
+			hideFragmentsAtSection(sectionIndex);
+			//updateFragmentsList(sectionIndex);
 		}
 	});
 	
 	decky.onSlideChange = function(n) {
 		disableAllIframes();
-		enableIframesAtSection(n - 1);
+		var index = n - 1;
+		enableIframesAtSection(index);
+		hideFragmentsAtSection(index);
+		//updateFragmentsList(index);
 	};
 
 	function disableAllIframes() {
@@ -40,5 +63,57 @@ window.onload = function() {
 				iframe.src = dataSrc;
 			}
 		});
+	}
+
+	function getCurrentSection() {
+		var section = document.querySelector('section.active');
+		return section;
+	}
+
+	function getFragmentsAtSection(index) {
+		var section = sections[index];
+		var fragments = Array.from(section.querySelectorAll('.fragment'));
+		return fragments;
+	}
+
+	function hideFragmentsAtSection(index) {
+		var fragments = getFragmentsAtSection(index);
+		fragments.forEach(hideFragment);
+	}
+
+	function hideFragment(f) {
+		f.classList.remove('visible');
+	}
+
+	function showFragment(f) {
+		f.classList.add('visible');
+	}
+
+	function hideOneFragment() {
+		var currentSection = getCurrentSection();
+		var visibleFragments = Array.from(currentSection.querySelectorAll('.fragment.visible'));
+		var lastVisible = visibleFragments.pop();
+		if(lastVisible) {
+			hideFragment(lastVisible);
+		}
+	}
+
+	function showOneFragment() {
+		var currentSection = getCurrentSection();
+		var index = currentSection.id;
+		var fragments = getFragmentsAtSection(index - 1);
+		var nextFragment;
+		
+		for(var i = 0; i < fragments.length; i++) {
+			var f = fragments[i];
+			if(!f.classList.contains('visible')) {
+				nextFragment = f;
+				break;
+			}
+		}
+		
+		if(nextFragment) {
+			showFragment(nextFragment);
+		}
 	}
 };

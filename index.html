@@ -28,14 +28,14 @@
 				<div>
 					<h2>Not:</h2>
 					<ul>
-						<li>Node.js streams</li>
-						<li>Future JavaScript streams</li>
+						<li class="fragment">Node.js streams</li>
+						<li class="fragment">Future JavaScript streams</li>
 					</ul>
 				</div>
 				<div>
-					<h2>Yes:</h2>
+					<h2 class="fragment">Yes:</h2>
 					<ul>
-						<li><tt>MediaStream</tt>s</li>
+						<li class="fragment"><tt>MediaStream</tt>s</li>
 					</ul>
 				</div>
 			</section>
@@ -182,7 +182,7 @@
 
 			<section>
 				<h1>You should not use <tt>canvas</tt> 2D pixel manipulation for this because it can be really slow. Use WebGL!</h1>
-				<h2>(but WebGL takes longer to setup and learn and explain, and won't fit on slides, so...)</h2>
+				<h2 class="fragment">(but WebGL takes longer to setup and learn and explain, and won't fit on slides, so...)</h2>
 			</section>
 
 			<section>
@@ -191,8 +191,8 @@
 
 			<section>
 				<h1><tt>AudioContext</tt> is your door<br />to the power of Web Audio</h1>
-				<h2>It lets you <strong>create</strong> input and output <strong>nodes</strong> and <strong>connect</strong> them together to form an <strong>audio graph</strong> to <strong>route</strong> and <strong>manipulate</strong> sounds in various ways.</h2>
-				<h3>I cannot explain Web Audio to you in two minutes, so this will have to do!</h3>
+				<h2 class="fragment">It lets you <strong>create</strong> input and output <strong>nodes</strong> and <strong>connect</strong> them together to form an <strong>audio graph</strong> to <strong>route</strong> and <strong>manipulate</strong> sounds in various ways.</h2>
+				<h3 class="fragment">I cannot explain Web Audio to you in two minutes, so this will have to do!</h3>
 			</section>
 
 			<section>
@@ -224,7 +224,7 @@
 
 			<section>
 				<h1>Let's add a <tt>stream</tt> to record this:</h1>
-				<h2><tt>stream -&gt; audio context <ins>-&gt; stream</ins></tt></h2>
+				<h2><tt>stream -&gt; audio context <ins class="fragment">-&gt; stream</ins></tt></h2>
 			</section>
 
 			<section>
@@ -243,7 +243,7 @@
 
 			<section>
 				<h1>we know how to manipulate and<br />record video, and audio</h1>
-				<h2>but how to do it all together?</h2>
+				<h2 class="fragment">but how to do it all together?</h2>
 			</section>
 			<section>
 				<h1>When we process audio and video in parallel, we end up with <em>two</em> streams, but <tt>MediaRecorder</tt> only takes <em>one</em>...</h1>
@@ -261,12 +261,12 @@
 				<h2><tt>MediaStream</tt></h2>
 				<ul>
 					<li>we can create instances, as we have access to the constructor</li>
-					<li>each instance has <em>very</em> useful methods
+					<li class="fragment">and each instance has <em>very</em> useful methods
 						<ul>
-							<li><tt>getAudioTracks()</tt></li>
-							<li><tt>getVideoTracks()</tt></li>
-							<li><tt>addTrack()</tt></li>
-							<li>etc...</li>
+							<li class="fragment"><tt>getAudioTracks()</tt></li>
+							<li class="fragment"><tt>getVideoTracks()</tt></li>
+							<li class="fragment"><tt>addTrack()</tt></li>
+							<li class="fragment">etc...</li>
 						</ul>
 					</li>
 				</ul>
@@ -274,7 +274,7 @@
 			
 			<section>
 				<h1>With this, we can recombine any number of streams into just one and keep on recording!</h1>
-				<h2>(as <tt>MediaRecorder</tt> doesn't care where did the stream come from)</h2>
+				<h2 class="fragment">(as <tt>MediaRecorder</tt> doesn't care where did the stream come from)</h2>
 			</section>
 
 			<section>
@@ -349,24 +349,24 @@
 				<h1>Wrap up</h1>
 				<h2>Support is so so:</h2>
 				<ul>
-					<li>Firefox supports everything I showed you (obviously)</li>
-					<li>Chrome can record audio and video streams (but not coming from WebAudio or canvas)</li>
-					<li>Safari lolsob 😂😥</li>
-					<li>Internet Explorer: not in your dreams, but MS Edge seems open to develop this</li>
-					<li>Support on mobile (Firefox/Chrome on Android) can be a bit hit and miss, and there's no hardware acceleration yet for the encoding, but things are getting better</li>
-					<li>I've no idea about Windows Phone or Blackberry</li>
-					<li>I don't think Opera Mini will support this</li>
-					<li>Definitely not in Lynx</li>
+					<li class="fragment">Firefox supports everything I showed you (obviously)</li>
+					<li class="fragment">Chrome can record audio and video streams (but not coming from WebAudio or canvas)</li>
+					<li class="fragment">Safari lolsob 😂😥</li>
+					<li class="fragment">Internet Explorer: not in your dreams, but MS Edge seems open to develop this</li>
+					<li class="fragment">Support on mobile (Firefox/Chrome on Android) can be a bit hit and miss, and there's no hardware acceleration yet for the encoding, but things are getting better</li>
+					<li class="fragment">I've no idea about Windows Phone or Blackberry</li>
+					<li class="fragment">I don't think Opera Mini will support this</li>
+					<li class="fragment">Definitely not in Lynx</li>
 				</ul>
 			</section>
 
 			<section>
 				<h1>More resources</h1>
 				<ul>
-					<li><a href="https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/">Record almost everything in the browser with MediaRecorder</a></li>
-					<li><a href="https://mozdevs.github.io/MediaRecorder-examples/">Media recorder examples</a> collection</li>
-					<li><a href="https://mozdevs.github.io/boo/">Boo!</a></li>
-					<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API">MDN MediaRecorder API documentation</a></li>
+					<li class="fragment"><a href="https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/">Record almost everything in the browser with MediaRecorder</a></li>
+					<li class="fragment"><a href="https://github.com/mozdevs/MediaRecorder-examples">Media recorder examples</a> collection</li>
+					<li class="fragment"><a href="https://mozdevs.github.io/boo/">Boo!</a></li>
+					<li class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API">MDN MediaRecorder API documentation</a></li>
 				</ul>
 			</section>
 

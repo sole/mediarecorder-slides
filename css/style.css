@@ -19,21 +19,35 @@ body, html {
 
 body {
 	font-size: 3vh;
+	font-family: Monospace;
 }
 
 h1 {
 	font-size: 3em;
+	margin: 0.5em 0;
 }
 
-h2 { font-size: 1.75em; }
-h3 { font-size: 1.5em; }
+h2 {
+	font-size: 1.75em;
+	margin: 0.5em 0;
+}
 
-p, ul {
+h3 {
+	font-size: 1.25em;
+	margin: 0.5em 0;
+}
+
+p {
 	font-size: 2em;
 }
 
 ul {
 	list-style-position: inside;
+	font-size: 4vh;
+}
+
+ul ul {
+	padding-left: 3vw;
 }
 
 section {
@@ -64,7 +78,6 @@ section.splash {
 }
 
 section.background-image {
-	border: 3px solid red;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -148,4 +161,18 @@ ins {
 img {
 	max-width: 80%;
 	height: auto;
+	max-height: 70%;
+}
+
+ul {
+	margin: 2vh 0;
+}
+
+.fragment {
+	opacity: 0.02;
+	transition: opacity 0.2s ease-in;
+}
+
+.fragment.visible {
+	opacity: 1;
 }
