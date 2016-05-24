@@ -23,7 +23,7 @@ window.onload = function() {
   var data = pixels.data;
   var numPixels = data.length;
 
-  var stream = canvas.captureStream(15);
+  var stream = canvas.captureStream(30);
   var recorder = new MediaRecorder(stream);
 
   recorder.addEventListener('dataavailable', finishCapturing);
