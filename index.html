@@ -16,6 +16,8 @@
 				<h3><a href="https://soledadpenades.com">soledadpenades.com</a> / @supersole</h3>
 			</section>
 
+			
+
 			<section class="splash warning">
 				<h1><strong>Warning:</strong> moving images and sounds in this presentation</h1>
 			</section>
@@ -81,7 +83,8 @@
 			</section>
 
 			<section class="splash">
-				<h2>... this is old news 😴</h2>
+				<h1>BORING</h1>
+				<h2 class="fragment">this is old news 😴</h2>
 			</section>
 
 			<section class="splash">
@@ -99,7 +102,7 @@
 						recorder.start();
 						setTimeout(() => {
 							recorder.stop();
-						}, 1000);
+						}, 5000);
 					</code>
 				</pre>
 				<div>
@@ -124,17 +127,54 @@
 			</section>
 
 			<section class="splash">
-				<h1>Alternative sources:</h1>
+				<h1>Alternative sources, 1:</h1>
+				<h2><tt>getUserMedia</tt> <strong>screen</strong> and <strong>window</strong> sharing</h2>
+			</section>
+			
+			<section class="two-rows">
+				<pre>
+					<code class="language-js">
+						// about:config -> add domain to media.getusermedia.screensharing.allowed_domains
+						navigator.mediaDevices.getUserMedia({
+							video: {
+								mediaSource: 'screen'
+							}
+						}).then(function (stream) {
+							var recorder = new MediaRecorder(stream);
+							recorder.addEventListener('dataavailable', e => {
+								video.src = URL.createObjectURL(e.data);
+								video.play();
+							});
+							recorder.start();
+							setTimeout(() => {
+								recorder.stop();
+							}, 5000);
+						});
+					</code>
+				</pre>
+				<div>
+					<iframe data-src="examples/record-screen.html"></iframe>
+				</div>
+			</section>
+
+			<section class="splash">
+				<h1>Alternative sources, 2:</h1>
 				<h2><tt>canvas.captureStream()</tt></h2>
 			</section>
 
 			<section class="two-rows">
 				<pre>
 					<code class="language-js">
-						// Not shown: drawing white noise on the canvas
-						// [...]
-						var canvasStream = canvas.captureStream(30); // fps
+						var canvasStream = canvas.captureStream(30 /* frames per second */ );
 						var recorder = new MediaRecorder(canvasStream);
+						// Simplified drawing white noise on the canvas
+						var pixels = ctx.getImageData(0, 0, width, height); var data = pixels.data; 
+						for(var i = 0; i < numPixels; i++) {
+							var grey = Math.round(Math.random() * 255);
+							data[offset++] = grey; data[offset++] = grey; data[offset++] = grey; offset++;
+						}
+						ctx.putImageData(pixels, 0, 0);
+						// plus usual recorder.start(), stop()...
 					</code>
 				</pre>
 				<div>
@@ -194,10 +234,19 @@
 				<h1>Likewise, we can modify audio in real time, using an <tt>AudioContext</tt></h1>
 			</section>
 
-			<section>
-				<h1><tt>AudioContext</tt> is your door to the power of Web Audio</h1>
-				<h2 class="fragment">It lets you <strong>create</strong> input and output <strong>nodes</strong> and <strong>connect</strong> them together to form an <strong>audio graph</strong> to <strong>route</strong> and <strong>manipulate</strong> sounds in various ways.</h2>
-				<h3 class="fragment">I cannot explain Web Audio to you in two minutes, so this will have to do!</h3>
+			<section class="two-columns">
+				<div>
+					<div>
+					<h1><tt>AudioContext</tt> is your door to the power of Web Audio</h1>
+					
+					<h2 class="fragment">It lets you <strong>create</strong> input and output <strong>nodes</strong> and <strong>connect</strong> them together to form an <strong>audio graph</strong> to <strong>route</strong> and <strong>manipulate</strong> sounds in various ways.</h2>
+					<h3 class="fragment">I cannot explain Web Audio to you in two minutes, so this will have to do!</h3>
+
+					</div>
+				</div>
+				<div>
+					<img src="imgs/modular-routing.png" />
+									</div>
 			</section>
 
 			<section>
@@ -348,6 +397,7 @@
 			<section>
 				<h1>Example: Greenscreening Cookie Monster</h1>
 				<a href="https://www.darktrojan.net/test/green/green.html"><img src="imgs/cookie.png" alt="Greenscreening cookie monster" /></a>
+				<h2>It's sadly offline today</h2>
 			</section>
 
 			<section>
@@ -382,6 +432,7 @@
 					<li class="fragment"><a href="https://github.com/mozdevs/MediaRecorder-examples">Media recorder examples</a> collection</li>
 					<li class="fragment"><a href="https://mozdevs.github.io/boo/">Boo!</a></li>
 					<li class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API">MDN MediaRecorder API documentation</a></li>
+					<li class="fragment"><a href="https://mozilla.github.io/webrtc-landing/gum_test.html">getUserMedia Test Page</a></li>
 				</ul>
 			</section>
 
@@ -389,6 +440,7 @@
 				<h1>Thanks!</h1>
 				<h2><a href="https://soledadpenades.com">soledadpenades.com</a> / @supersole</h2>
 			</section>
+
 		</main>
 		<script src="vendor/decky.js"></script>
 		<script src="js/main.js"></script>
