@@ -89,6 +89,8 @@
 
 			<section class="splash">
 				<h1>What's 🆕 and 🆒?<br /><tt class="fragment">MediaRecorder</tt></h1>
+				<h2 class="fragment">Native JavaScript API</h2>
+				<h2 class="fragment">Exposes methods + events</h2>
 			</section>
 
 			<section class="two-rows">
@@ -113,7 +115,7 @@
 			<section class="splash">
 				<h1>I just encoded audio and video natively in the browser, without plug-ins.</h1>
 			</section>
-			
+
 			<section class="splash">
 				<h1>You can get really creative with this!<br />For example...</h1>
 			</section>
@@ -304,7 +306,7 @@
 			</section>
 
 			<section class="splash">
-				<h1>What is  ✨the ultimate secret✨<br />to real time front-end alchemy?</h1>
+				<h2>What is  ✨the ultimate secret✨<br />to real time front-end alchemy?</h2>
 			</section>
 			
 			<section class="splash">
@@ -335,8 +337,8 @@
 				<pre>
 					<code class="language-js">
 					// Video =========================
-					var videoStream = new MediaStream();
 					var videoTracks = inputStream.getVideoTracks();
+					var videoStream = new MediaStream();
 					videoTracks.forEach(function(track) {
 						videoStream.addTrack(track);
 					});
@@ -350,8 +352,8 @@
 				<pre>
 					<code class="language-js">
 					// Audio =========================
-					var audioStream = new MediaStream();
 					var audioTracks = inputStream.getAudioTracks();
+					var audioStream = new MediaStream();
 					audioTracks.forEach(function(track) {
 						audioStream.addTrack(track);
 					});
@@ -386,7 +388,7 @@
 			</section>
 
 			<section>
-				<h1><tt>MediaRecorder</tt> + <tt>Web Audio</tt> + <tt>WebGL</tt> enable you to build really sophisticated apps without plugins or server side support<br /><span class="fragment">so it's faster and respectful of your users' privacy</span></h1>
+				<h1><tt>MediaRecorder</tt> + <tt>Web Audio</tt> + <tt>WebGL</tt> enable you to build really sophisticated apps without plugins or server side support <span class="fragment">so it's faster and respectful of your users' privacy</span></h1>
 			</section>
 			<section>
 				<h1>Example: Boo</h1>
@@ -397,10 +399,10 @@
 			<section>
 				<h1>Example: Greenscreening Cookie Monster</h1>
 				<a href="https://www.darktrojan.net/test/green/green.html"><img src="imgs/cookie.png" alt="Greenscreening cookie monster" /></a>
-				<h2>It's sadly offline today</h2>
+				<!--<h2>It's sadly offline today</h2>-->
 			</section>
 
-			<section>
+			<section class="splash">
 				<h1>Wrap up</h1>
 				<h2>The MediaCapture API is very cool!</h2>
 			</section>
@@ -428,7 +430,7 @@
 			<section>
 				<h1>More resources</h1>
 				<ul>
-					<li class="fragment"><a href="https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/">Record almost everything in the browser with MediaRecorder</a></li>
+					<li class="fragment">Mozilla Hacks blog post: <a href="https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/">Record almost everything in the browser with MediaRecorder</a></li>
 					<li class="fragment"><a href="https://github.com/mozdevs/MediaRecorder-examples">Media recorder examples</a> collection</li>
 					<li class="fragment"><a href="https://mozdevs.github.io/boo/">Boo!</a></li>
 					<li class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API">MDN MediaRecorder API documentation</a></li>
