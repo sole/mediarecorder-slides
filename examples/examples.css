@@ -25,3 +25,7 @@ video {
 canvas {
 	background: #efefef;
 }
+
+button {
+	font-size: 80vh;
+}
