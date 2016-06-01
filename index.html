@@ -136,17 +136,34 @@
 			<section class="fullscreen-demo">
 				<div><iframe data-src="examples/looping-mosaic.html"></iframe></div>
 			</section>
-			
+
 			<section class="splash">
-				<h1><tt>MediaRecorder</tt> doesn't care about where does the <tt>stream</tt> come from</h1>
+				<h2>Some more ideas</h2>
+				<ul>
+					<li class="fragment">Beatbox</li>
+					<li class="fragment">Sampling based music apps<span class="fragment">... combine with Web MIDI!</span></li>
+					<li class="fragment">Dictaphone</li>
+					<li class="fragment">Field recording<span class="fragment">... with Geolocation API</span></li>
+					<li class="fragment">Vine app, but without the 'app' bit</li>
+					<li class="fragment">Granular and glitch-based audio synthesis</li>
+					<li class="fragment">Your take?</li>
+				</ul>
 			</section>
+
+			<section class="splash">
+				<h1>And this is just the beginning...</h1>
+			</section>
+			
+			<!--<section class="splash">
+				<h1><tt>MediaRecorder</tt> doesn't care about where does the <tt>stream</tt> come from</h1>
+			</section>-->
 
 			<section class="splash">
 				<h1>Alternative sources, 1:</h1>
 				<h2><tt>getUserMedia</tt> <strong>screen</strong> and <strong>window</strong> sharing</h2>
 			</section>
-			
-			<section class="two-rows">
+
+			<section>
 				<pre>
 					<code class="language-js">
 						// about:config -> add domain to media.getusermedia.screensharing.allowed_domains
@@ -155,18 +172,17 @@
 								mediaSource: 'screen'
 							}
 						}).then(function (stream) {
-							var recorder = new MediaRecorder(stream);
-							recorder.addEventListener('dataavailable', e => {
-								video.src = URL.createObjectURL(e.data);
-								video.play();
-							});
-							recorder.start();
-							setTimeout(() => {
-								recorder.stop();
-							}, 5000);
+							// do something with stream
+							// ...
 						});
 					</code>
 				</pre>
+			</section>
+			
+			<section class="two-columns">
+				<div>
+					<iframe data-src="https://make8bitart.com/"></iframe>
+				</div>
 				<div>
 					<iframe data-src="examples/record-screen.html"></iframe>
 				</div>
