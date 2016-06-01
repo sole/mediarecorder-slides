@@ -1,4 +1,5 @@
 window.onload = function() {
+	var button = document.querySelector('button');
   var video = document.querySelector('video');
   var canvas = document.querySelector('canvas');
   var width = canvas.width;
@@ -28,13 +29,16 @@ window.onload = function() {
 
   recorder.addEventListener('dataavailable', finishCapturing);
   
-  startCapturing();
-  recorder.start();
+  button.onclick = function() {
+	startCapturing();
+
+  };
 
   function startCapturing() {
     capturing = true;
     draw();
 
+	recorder.start();
     setTimeout(function() {
       recorder.stop();
     }, 2000);
