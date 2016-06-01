@@ -258,7 +258,7 @@
 
 			<section>
 				<h1>You should not use <tt>canvas</tt> 2D pixel manipulation for this because it can be really slow. Use WebGL!</h1>
-				<h2 class="fragment">(but WebGL takes longer to setup and learn and explain, and won't fit on slides, so...)</h2>
+				<h2 class="fragment">(but WebGL takes longer to setup and learn and explain, and won't fit on slides, so... 💁🏻)</h2>
 			</section>
 
 			<section class="splash">
@@ -275,9 +275,9 @@
 
 					</div>
 				</div>
-				<div>
+				<div class="fragment">
 					<img src="imgs/modular-routing.png" />
-									</div>
+				</div>
 			</section>
 
 			<section>
@@ -296,11 +296,11 @@
 					// assume we obtained a stream from the webcam
 					var ac = new AudioContext();
 					var inputNode = audioContext.createMediaStreamSource(stream);
-					var flanger = makeFlanger(audioContext);
+					var effect = makeEffect(audioContext);
 					// [...]
-					//  ^^^  not shown: ~40 lines to build the flanger
-					inputNode.connect(flanger.input);
-					flanger.output.connect(ac.destination);
+					
+					inputNode.connect(effect.input);
+					effect.output.connect(ac.destination);
 					</code>
 				</pre>
 				<div><iframe data-src="examples/filter-live-audio.html"></iframe></div>
@@ -438,7 +438,7 @@
 		
 			<section>
 				<h1>Wrap up</h1>
-				<h2>Support is so so:</h2>
+				<h2>Support is so so 😔:</h2>
 				<ul>
 					<li class="fragment">Firefox supports everything I showed you (obviously)</li>
 					<li class="fragment">Chrome can record audio and video streams (but not coming from WebAudio or canvas)</li>

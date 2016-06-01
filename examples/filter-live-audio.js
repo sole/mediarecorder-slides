@@ -9,10 +9,10 @@ window.onload = function() {
 
 	function connectToAudioContext(stream) {
 		var inputNode = audioContext.createMediaStreamSource(stream);
-		var filter = makeFlanger(audioContext);
+		var effect = makeEcho(audioContext);
 		
-		inputNode.connect(filter.input);
-		filter.output.connect(audioContext.destination);
+		inputNode.connect(effect.input);
+		effect.output.connect(audioContext.destination);
 
 		// This is a temporary workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=934512
 		// where the stream is collected too soon by the Garbage Collector

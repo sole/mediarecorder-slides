@@ -32,7 +32,7 @@ window.onload = function() {
 
 	function connectToAudioContext(stream) {
 		var inputNode = audioContext.createMediaStreamSource(stream);
-		var filter = makeFlanger(audioContext);
+		var filter = makeEcho(audioContext);
 		var streamOutput = audioContext.createMediaStreamDestination();
 		inputNode.connect(filter.input);
 		filter.output.connect(streamOutput);
