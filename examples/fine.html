@@ -1,0 +1,85 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <title>Fine</title>
+    <link rel="stylesheet" href="examples.css" type="text/css">
+	<script src="fine.js"></script>
+	<style>
+		body {
+			width: 100%;
+			height: 100%;
+			display: flex;
+		}
+		
+		header {
+			display: flex;
+			align-items: center;
+			height: 200px;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1000;
+		}
+
+		#delete, #finish {
+			flex-grow: 0;
+			height: 100%;
+		}
+
+		#progress {
+			flex-grow: 1;
+			-webkit-appearance: none;
+			appearance: none;
+			height: 100%;
+			background: transparent;
+			border: none;
+		}
+
+		/* apparently you can't reuse the declaration with more than one pseudo element ¬_¬*/
+
+		#progress::-moz-progress-bar {
+			background: #00d9a3;
+		}
+
+		#progress::-webkit-progress-bar {
+			background: transparent;
+		}
+
+		#progress::-webkit-progress-value {
+			background: #00d9a3;
+		}
+
+		video {
+			background: #666;
+			display: block;
+			height: 100%;
+			width: 100%;
+			max-height: none;
+			max-width: none;
+		}
+
+		#surface {
+			display: block;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background: rgba(255, 0, 0, 0.15);
+			z-index: 0;
+		}
+    </style>
+</head>
+
+<body>
+	<header>
+		<button id="delete">X</button>
+		<progress id="progress" min="0" max="6" value="0"></progress>
+		<button id="finish">&gt;</button>
+	</header>
+	
+	<video loop></video>
+
+	<div id="surface"></div>
+
+</body>
+
