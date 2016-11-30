@@ -58,14 +58,18 @@ function initCanvas(video) {
 	outVideo.play();
   });
 
-  setTimeout(() => {
-	  recorder.stop();
-  }, 3000);
+	var button = document.querySelector('button');
+	button.onclick = demo;
 
-  setTimeout(() => {
-	recorder.start();
-  }, 1000);
+	function demo() {
 
+		setTimeout(() => {
+			recorder.stop();
+		}, 3000);
+
+		recorder.start();
+
+	}
 }
 
 function applyFilter(ctx, width, height) {
