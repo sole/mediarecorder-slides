@@ -13,7 +13,7 @@ html {
 
 body, html {
 	width: 100%;
-	height 100%;
+	height: 100%;
 	overflow: hidden;
 }
 
@@ -65,11 +65,11 @@ ul ul {
 
 nav {
 	position: absolute;
-	right: 0;
-	top: 0;
+	right: 2vh;
+	top: 2vh;
 	font-size: 4vh;
-	height: 3vh;
 	color: #666;
+	background: #fff;
 	z-index: 20;
 }
 
@@ -80,7 +80,7 @@ section {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	padding: 1vh 1vw;
+	padding: 4vw;
 	background: #fff;
 }
 
@@ -103,13 +103,32 @@ section.splash {
 	justify-content: center;
 }
 
+section.megabig {
+	font-size: 2em;
+}
+
 section.warning {
 	background: #ff0;
+	border: 1vw solid red;
 }
 
 section.background-image {
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+
+section.mozilla {
+	color: #fff;
+	background-color: #000;
+}
+
+.mozilla > img {
+	border: none;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: crisp-edges;
+	width: 100%;
+	height: auto;
+	max-height: 100%;
 }
 
 section.background-image > * {
@@ -208,3 +227,4 @@ tt {
 .fragment.visible {
 	opacity: 1;
 }
+

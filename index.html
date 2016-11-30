@@ -22,7 +22,14 @@
 			</section>
 
 			<section class="splash warning">
-				<h1><strong>Warning:</strong> moving images and sounds in this presentation</h1>
+				<h1><strong>Warning:</strong> moving images and maybe awful feedback in this presentation</h1>
+				<h2>If video loops or sound glitches make you feel unwell, <strong>please leave now</strong>. Sorry  😔</h2>
+			</section>
+
+			<section class="splash mozilla">
+				<h1>I work at</h1>
+				<img src="imgs/mozilla.gif" alt="Mozilla" />
+				<h3>Engineering manager at @FirefoxDevTools</h3>
 			</section>
 
 			<section class="splash">
@@ -56,7 +63,7 @@
 			</section>
 
 			<section class="splash">
-				<h1><tt>MediaStream</tt>s are <tt>track</tt> containers</h1>
+				<h1><tt>MediaStream</tt>s are<br /><tt>track</tt> containers</h1>
 				<h2 class="fragment">Tracks can be <strong>audio</strong> or <strong>video</strong></h2>
 				<h2 class="fragment">There can be any number of tracks per stream</h2>
 			</section>
@@ -67,11 +74,11 @@
 
 		
 			<section class="splash">
-				<h1><tt>getUserMedia</tt></h1>
+				<h1><tt>getUserMedia()</tt></h1>
 			</section>
 
 			<section>
-				<h2><tt>getUserMedia</tt></h2>
+				<h2><tt>getUserMedia()</tt></h2>
 				<pre>
 					<code class="language-js">
 						navigator.mediaDevices.getUserMedia({
@@ -79,7 +86,7 @@
 							 video: true
 						}).then(function (stream) {
 							// do something with the stream
-						}
+						})
 					</code>
 				</pre>
 			</section>
@@ -101,19 +108,28 @@
 				<div><iframe data-src="examples/display-webcam.html"></iframe></div>
 			</section>
 
-			<section class="splash">
+			<section class="splash megabig">
 				<h1>BORING</h1>
 				<h2 class="fragment">this is old news 😴</h2>
 			</section>
 
 			<section class="splash">
-				<h1>You didn't come here to hear boring stuff</h1>
+				<h1>You didn't come here<br />to hear boring stuff<br />🙅🏻</h1>
 			</section>
 
 			<section class="splash">
 				<h1>What's 🆕 and 🆒?<br /><tt class="fragment">MediaRecorder</tt></h1>
 				<h2 class="fragment">Native JavaScript API</h2>
-				<h2 class="fragment">Exposes methods + events</h2>
+				<h2 class="fragment">Familiar syntax with methods + DOM events</h2>
+			</section>
+
+			<section>
+				<h1><tt>MediaRecorder</tt> in a nutshell</h1>
+				<ul>
+					<li class="fragment">Constructor: <tt>new MediaRecorder(stream)</tt></li>
+					<li class="fragment">Methods: <tt>start()</tt>, <tt>stop()</tt>, <tt>pause()</tt>, <tt>resume()</tt>...</li>
+					<li class="fragment">Events: <tt>dataavailable</tt>, <tt>start</tt>, <tt>stop</tt>...</li>
+				</ul>
 			</section>
 
 			<section class="two-rows">
@@ -138,30 +154,15 @@
 			<section class="splash">
 				<h1>I just encoded audio and video natively in the browser, without plug-ins.</h1>
 			</section>
-
-			<section class="splash">
-				<h1>You can get really creative with this!<br />For example...</h1>
+			
+			<section class="splash megabig">
+				<h1>💫🎙💥 MIC DROP</h1>
+				<h2 class="fragment">jk 😜</h2>
 			</section>
 
-			<section class="fullscreen-demo">
-				<div><iframe data-src="examples/looping-mosaic.html"></iframe></div>
-			</section>
-
+			
 			<section class="splash">
-				<h2>Some more ideas</h2>
-				<ul>
-					<li class="fragment">Beatbox</li>
-					<li class="fragment">Sampling based music apps<span class="fragment">... combine with Web MIDI!</span></li>
-					<li class="fragment">Dictaphone</li>
-					<li class="fragment">Field recording<span class="fragment">... with Geolocation API</span></li>
-					<li class="fragment">Vine app, but without the 'app' bit</li>
-					<li class="fragment">Granular and glitch-based audio synthesis</li>
-					<li class="fragment">Your take?</li>
-				</ul>
-			</section>
-
-			<section class="splash">
-				<h1>And this is just the beginning...</h1>
+				<h1>And we've just barely scratched the surface...</h1>
 			</section>
 			
 			<!--<section class="splash">
@@ -169,7 +170,7 @@
 			</section>-->
 
 			<section class="splash">
-				<h1>Alternative sources, 1:</h1>
+				<h1>Alternative stream sources, 1:</h1>
 				<h2><tt>getUserMedia</tt> <strong>screen</strong> and <strong>window</strong> sharing</h2>
 			</section>
 
@@ -199,7 +200,7 @@
 			</section>
 
 			<section class="splash">
-				<h1>Alternative sources, 2:</h1>
+				<h1>Alternative stream sources, 2:</h1>
 				<h2><tt>canvas.captureStream()</tt></h2>
 			</section>
 
@@ -272,7 +273,14 @@
 			</section>
 
 			<section class="splash">
-				<h1>Likewise, we can modify audio in real time, using an <tt>AudioContext</tt></h1>
+				<h1>Alternative stream sources, 3:</h1>
+				<h2>Web Audio's <tt>MediaStreamAudioDestinationNode</tt></h2>
+				<h3 class="fragment">(... and we made fun of Java class names 😂)</h3>
+			</section>
+
+
+			<section class="splash">
+				<h1>This enables us to modify and capture audio in real time, using an <tt>AudioContext</tt></h1>
 			</section>
 
 			<section class="two-columns">
@@ -292,18 +300,18 @@
 
 			<section>
 				<h1>This is what we're going to do:</h1>
-				<h2><tt>stream -&gt; audio context -&gt; stream</tt></h2>
+				<h2><tt>input stream -&gt; audio context -&gt; output stream</tt></h2>
 			</section>
 
 			<section>
 				<h1>But we'll start with:</h1>
-				<h2><tt>stream -&gt; audio context</tt></h2>
+				<h2><tt>input stream -&gt; audio context</tt></h2>
 			</section>
 
 			<section>
 				<pre>
 					<code class="language-js">
-					// assume we obtained a stream from the webcam
+					// we obtained a stream with an audio track, with getUserMedia
 					var ac = new AudioContext();
 					var inputNode = audioContext.createMediaStreamSource(stream);
 					var effect = makeEffect(audioContext);
@@ -318,15 +326,15 @@
 
 
 			<section>
-				<h1>Let's add a <tt>stream</tt> to record this:</h1>
-				<h2><tt>stream -&gt; audio context <ins class="fragment">-&gt; stream</ins></tt></h2>
+				<h1>Let's add a <tt>MediaStreamAudioDestinationNode</tt> to record this:</h1>
+				<h2><tt>input stream -&gt; audio context <ins class="fragment">-&gt; output stream</ins></tt></h2>
 			</section>
 
 			<section>
 				<pre>
 					<code class="language-js">
 						var outputNode = audioContext.createMediaStreamDestination();
-						filter.output.connect(outputNode);
+						effect.output.connect(outputNode);
 
 						var recorder = new MediaRecorder(outputNode.stream);
 						// and record as usual...
@@ -337,25 +345,29 @@
 			</section>
 
 			<section class="splash">
-				<h1>We know how to manipulate and<br />record video, and audio</h1>
-				<h2 class="fragment">but how to do it all together?</h2>
+				<h1>So far, we have looked at manipulating and recording video and audio separately</h1>
 			</section>
+		
 			<section class="splash">
-				<h1>When we process audio and video in parallel, we get <em>two</em> streams, but <tt>MediaRecorder</tt> only takes <em>one</em>...</h1>
+				<h1>When we process audio and video in parallel, we get <em>two</em> streams, but <tt>MediaRecorder</tt> only takes <u>one</u>...</h1>
 			</section>
-
+	
 			<section class="splash">
-				<h2>What is  ✨the ultimate secret✨<br />to real time front-end alchemy?</h2>
+				<h1>How can we join both streams together and capture it? 🤔</h1>
+			</section>
+	
+			<section class="splash">
+				<h1>What is <br/><strong>✨the ultimate secret✨</strong><br />to real time front-end alchemy?</h1>
 			</section>
 			
 			<section class="splash">
-				<h1><tt>MediaStream</tt></h1>
+				<h1><tt>MediaStream()</tt></h1>
 			</section>
 
 			<section>
 				<h2><tt>MediaStream</tt></h2>
 				<ul>
-					<li>we can create instances, as we have access to the constructor</li>
+					<li>we can create additional instances, as we have access to the constructor<span class="fragment">: <tt>new MediaStream()</tt></span></li>
 					<li class="fragment">and each instance has <em>very</em> useful methods
 						<ul>
 							<li class="fragment"><tt>getAudioTracks()</tt></li>
@@ -426,14 +438,69 @@
 				</pre>
 			</section>
 
-			<section>
-				<h1><tt>MediaRecorder</tt> + <tt>Web Audio</tt> + <tt>WebGL</tt> enable you to build really sophisticated apps without plugins or server side support <span class="fragment">so it's faster and respectful of your users' privacy</span></h1>
+			<section class="splash megabig">
+				<h1>Why is this API important?</h1>
 			</section>
+			
+			<section>
+				<h1><tt>MediaRecorder</tt> + <tt>Web Audio</tt> + <tt>WebGL</tt> enable you to build really sophisticated apps without plugins or server side support <span class="fragment">so it's <strong>faster</strong> and respectful of your users' <strong>privacy</strong></span></h1>
+			</section>
+
+			<section class="splash">
+				<h1>Also</h1>
+				<h2>Photography and video apps are <strong>~kind of~</strong> a big deal 😌...</h2>
+			</section>
+
+			<section>
+				<h2>Play Store: 4th and 5th top apps</h2>
+				<img src="imgs/playstore.png">
+			</section>
+
+			<section>
+				<h2>App Store: 6th and 8th top apps</h2>
+				<img src="imgs/appstore.png">
+			</section>
+
+			<section class="splash">
+				<h2>My point being...</h2>
+				<h1 class="fragment"><tt>MediaRecorder</tt> enables you to build Instagram and SnapChat on the browser</h1>
+			</section>
+
+			<section class="splash">
+				<h2>Although maybe we don't need yet another social network?</h2>
+				<h1 class="fragment">Get creative instead!</h1>
+				<h3 class="fragment">For example...</h3>
+			</section>
+
+			<section class="fullscreen-demo">
+				<div><iframe data-src="examples/looping-mosaic.html"></iframe></div>
+			</section>
+
+			<section class="splash">
+				<h2>Some more ideas</h2>
+				<ul>
+					<li class="fragment">Beatbox</li>
+					<li class="fragment">Sampling based music apps<span class="fragment">... combine with Web MIDI!</span></li>
+					<li class="fragment">Dictaphone</li>
+					<li class="fragment">Field recording<span class="fragment">... with Geolocation API</span></li>
+					<li class="fragment">Vine app, but without the 'app' bit</li>
+					<li class="fragment">Granular and glitch-based audio synthesis</li>
+					<li class="fragment">Your take?</li>
+				</ul>
+			</section>
+
+
+			<section class="splash">
+				<h1>More examples?</h1>
+			</section>
+
 			<section>
 				<h1>Example: Boo</h1>
 				<h2>A videobooth built with WebGL and Web Audio</h2>
 				<a href="https://mozdevs.github.io/boo/"><img src="imgs/boo.png" alt="Boo videobooth" /></a>
 			</section>
+
+
 
 			<section>
 				<h1>Example: Greenscreening Cookie Monster</h1>
@@ -451,7 +518,7 @@
 				<h2>Support is so so 😔:</h2>
 				<ul>
 					<li class="fragment">Firefox supports everything I showed you (obviously)</li>
-					<li class="fragment">Chrome can record audio and video streams (but not coming from WebAudio or canvas)</li>
+					<li class="fragment">Chrome 57+ can do pretty much everything I demoed inc. rec streams from Web Audio <span class="fragment">(also: bugs)</span></li>
 					<li class="fragment">Safari lolsob 😂😥</li>
 					<li class="fragment">Internet Explorer: not in your dreams, but MS Edge seems open to develop this</li>
 					<li class="fragment">Firefox/Chrome on Android: bit hit and miss, and no hardware accelerated encoding yet</li>
@@ -463,7 +530,14 @@
 
 			<section>
 				<h1>Wrap up</h1>
-				<h2>But it is getting good really quickly!</h2>
+				<h2>But it is getting great really quickly</h2>
+				<h3>... and we need you to play with it, contribute and help us make it better!</h3>
+				<ul>
+					<li class="fragment">Use it</li>
+					<li class="fragment">Break it</li>
+					<li class="fragment">File bugs</li>
+					<li class="fragment">Request features</li>
+				</ul>
 			</section>
 
 			<section>
@@ -474,7 +548,10 @@
 					<li class="fragment"><a href="https://mozdevs.github.io/boo/">Boo!</a></li>
 					<li class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API">MDN MediaRecorder API documentation</a></li>
 					<li class="fragment"><a href="https://mozilla.github.io/webrtc-landing/gum_test.html">getUserMedia Test Page</a></li>
+					<li class="fragment"><a href="https://soledadpenades.com/tag/mediarecorder/">soledadpenades.com/tag/mediarecorder</a></li>
+					<li class="fragment"><a href="https://soledadpenades.com/files/t/2016_rtalchemy/">soledadpenades.com/files/t/2016_rtalchemy/</a></li>
 				</ul>
+				<h1 class="fragment">I WILL TWEET THE LINK!</h1>
 			</section>
 
 			<section class="splash">
